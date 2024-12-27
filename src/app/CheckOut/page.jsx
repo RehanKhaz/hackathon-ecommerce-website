@@ -4,14 +4,14 @@ import Input from '../components/Input'
 import WebsiteBanner from '../components/WebsiteBanner'
 import Button from '../components/Button'
 import Gurantees from '../components/Gurantees'
-import { useCartContext } from '../Context/CartContext'
+import { UseCartContext } from '../Context/CartContext'
 
 const Circle = ({ bg }) => (
     <div className={`size-6 ${bg} hover:bg-black cursor-pointer transition-colors ease-in-out duration-700 delay-30 border border-[#9F9F9F] rounded-full`}></div>
 )
 
 const page = () => {
-    const { cart,Subtotal } = useCartContext()
+    const { cart,Subtotal } = UseCartContext()
     return (
         <div className='w-screen'>
             <WebsiteBanner title={'Checkout'} />

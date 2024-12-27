@@ -4,7 +4,7 @@ import { productData } from "../constants/page";
 
 const CartContext = createContext()
 
-export const useCartContext = () => {
+export const UseCartContext = () => {
     return useContext(CartContext)
 }
 

@@ -5,10 +5,10 @@ import WebsiteBanner from '../components/WebsiteBanner'
 import Button from '../components/Button'
 import Link from 'next/link'
 import Gurantees from '../components/Gurantees'
-import { useCartContext } from '../Context/CartContext'
+import { UseCartContext } from '../Context/CartContext'
 
 const page = () => {
-  const { cart, deleteCartItem, Subtotal } = useCartContext()
+  const { cart, deleteCartItem, Subtotal } = UseCartContext()
 
   function deleteFromCart(productId) {
     deleteCartItem(productId)

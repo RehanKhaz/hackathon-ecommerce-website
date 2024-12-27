@@ -7,13 +7,13 @@ import Products from '../../components/Products'
 import Underline from '../../components/Underline'
 import Link from 'next/link'
 import { productData } from '@/app/constants/page'
-import { useCartContext } from '@/app/Context/CartContext'
+import { UseCartContext } from '@/app/Context/CartContext'
 import { useParams } from 'next/navigation'
 
 const SingleProduct = () => {
     const params = useParams()
     const Id = params.id
-    const { addToCart, cartItems, deleteCartItem, itemsCount, setItemsCount } = useCartContext()
+    const { addToCart, cartItems, deleteCartItem, itemsCount, setItemsCount } = UseCartContext()
     function addCartItem(findItemNavigated) {
         return addToCart(findItemNavigated)
     }

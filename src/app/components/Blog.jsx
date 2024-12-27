@@ -2,6 +2,7 @@ import React from 'react'
 import Underline from './Underline';
 import { GoClock } from "react-icons/go";
 import { SlCalender } from "react-icons/sl";
+import Link from 'next/link';
 
 
 const Blog = () => {
@@ -32,7 +33,7 @@ const Blog = () => {
       <div className='flex gap-4 flex-wrap mt-3 md:mt-[2.8rem] items-center justify-center'>
         {
           blogData.map((value, index) => (
-            <div key={index} className='md:w-[32%] p-3 flex flex-col items-center  justify-center gap-2  sm:w-[47%] w-[90%]'>
+            <Link href={'/Blog'} key={index} className='md:w-[32%] p-3 flex flex-col items-center  justify-center gap-2  sm:w-[47%] w-[90%]'>
               <img src={value.src} alt="" className='object-cover' />
               <p className='tracking-wider text-left capatilize w-[95%] font-[500] text-[.9em] md:text-[1em]  '>{value.title}</p>
               <Underline title={'Read More'} />
@@ -51,15 +52,15 @@ const Blog = () => {
                 </div>
               </div>
 
-            </div>
+            </Link>
           ))
         }
 
       </div>
       
-  <div className='w-full mt-2 md:mt-4 grid place-content-center'>
+  <Link href={'/Blog'} className='w-full mt-2 md:mt-4 grid place-content-center'>
   <Underline   title={'View All Posts'}/>
-  </div>
+  </Link>
     </div>
   )
 }

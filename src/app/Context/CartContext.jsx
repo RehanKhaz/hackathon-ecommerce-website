@@ -1,57 +1,86 @@
-'use client'
+'use client';
 import React, { useEffect, createContext, useContext, useState } from "react";
-import { productData } from "../constants/page";
 
-const CartContext = createContext()
+const CartContext = createContext();
 
 export const UseCartContext = () => {
-    return useContext(CartContext)
-}
+    return useContext(CartContext);
+};
 
 const CartProvider = ({ children }) => {
-    let [itemsCount, setItemsCount] = useState(1)
-    let [cartItems, setCartItems] = useState([])
-    let cart = JSON.parse(localStorage.getItem('cartItem'))
-    let Subtotal = cart.reduce((prev, curr) => {
-        return prev + Number(curr.price.replace(/,/g, '')) * curr.quantity
-    }, 0)
+    const [itemsCount, setItemsCount] = useState(1);
+    const [cartItems, setCartItems] = useState([]);
+    const [Subtotal, setSubTotal] = useState(0); 
 
-    function addToCart(Product) {
-        alert("Adding to Cart")
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const storedCart = JSON.parse(localStorage.getItem('cartItem')) || [];
+            setCartItems(storedCart);
+        }
+    }, []);
+
+useEffect(() => {
+        const subtotal = cartItems.reduce((prev, curr) => {
+            return prev + Number(curr.price.replace(/,/g, '')) * curr.quantity;
+        }, 0);
+        setSubTotal(subtotal);
+    }, [cartItems]);
+
+    const addToCart = (Product) => {
+        alert("Adding to Cart");
         setCartItems((prevItems) => {
-            let isItemExists = prevItems.find((item) => item.id === Product.id)
+            const isItemExists = prevItems.find((item) => item.id === Product.id);
             let updatedCart;
             if (isItemExists) {
-                updatedCart = prevItems.map((item, index) =>
-                    item.id === Product.id ?
-                        { ...item, quantity: item.quantity + itemsCount } : item
-                )
+                updatedCart = prevItems.map((item) =>
+                    item.id === Product.id
+                        ? { ...item, quantity: item.quantity + itemsCount }
+                        : item
+                );
             } else {
-                updatedCart = [...prevItems, { ...Product, quantity: itemsCount }]
+                updatedCart = [...prevItems, { ...Product, quantity: itemsCount }];
             }
-            localStorage.setItem('cartItem', JSON.stringify(updatedCart))
-            return updatedCart
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('cartItem', JSON.stringify(updatedCart));
+            }
+            return updatedCart;
+        });
+    };
 
-        })
+    const deleteCartItem = (product) => {
+        setCartItems((prevItems) => {
+            const updatedCart = prevItems.filter((item) => item.id !== product.id);
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('cartItem', JSON.stringify(updatedCart));
+                setCartItems(updatedCart)
+            }
+            return updatedCart;
+        });
+    };
 
-    }
+    const clearCart = () => {
+        setCartItems([]);
+        if (typeof window !== 'undefined') {
+            localStorage.setItem('cartItem', JSON.stringify([]));
+        }
+    };
 
-    function deleteCartItem(productId) {
-        let cart = JSON.parse(localStorage.getItem('cartItem'))
-        let updatedCart = cart.filter((item) => item.id !== productId.id)
-        setCartItems(updatedCart)
-        localStorage.setItem("cartItem", JSON.stringify(updatedCart))
-    }
+    return (
+        <CartContext.Provider
+            value={{
+                addToCart,
+                cartItems,
+                deleteCartItem,
+                itemsCount,
+                setItemsCount,
+                setCartItems,
+                clearCart,
+                Subtotal,
+            }}
+        >
+            {children}
+        </CartContext.Provider>
+    );
+};
 
-    function clearCart() {
-        setCartItems([])
-    }
-
-    return <CartContext.Provider value={
-        { addToCart, cart, deleteCartItem, itemsCount, setItemsCount, setCartItems, clearCart, Subtotal, cartItems }
-    }>
-        {children}
-    </CartContext.Provider>
-}
-
-export default CartProvider
+export default CartProvider;

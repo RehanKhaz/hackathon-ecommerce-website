@@ -12,7 +12,7 @@ import { UseCartContext } from '../Context/CartContext';
 const Header = () => {
     const [sideBarDisplay, setSideBarDisplay] = useState(false)
     const [cartBarOpen, setCartBarOpen] = useState(false)
-    let {cart} = UseCartContext()
+    let {cartItems} = UseCartContext()
     const navElements = ['Home', 'Shop', 'Blog', 'Contact', 'Cart']
     return (
         <header className='px-6 w-dvw relative  flex items-center py-4 gap-4 justify-between lg:py-6 md:px-8 lg:px-16 bg-white'>
@@ -37,7 +37,7 @@ const Header = () => {
                     <FaRegHeart className='size-4 sm:size-5 md:size-6' />
                 </Link>
                 <div className='flex items-center justify-center gap-1' onClick={() => setCartBarOpen((prev) => !prev)}  >
-                    <FaCartShopping className='size-4 sm:size-5 md:size-6' /><sup className='size-3 bg-yellow-400 text-white text-xl flex-center p-4 rounded-full'>{cart.length}</sup>
+                    <FaCartShopping className='size-4 sm:size-5 md:size-6' /><sup className='size-3 bg-yellow-400 text-white text-xl flex-center p-4 rounded-full'>{cartItems.length}</sup>
                 </div>
                 <GiHamburgerMenu onClick={() => setSideBarDisplay((prev) => !prev)} className='md:hidden block size-4 sm:size-5 md:size-7' />
             </div>

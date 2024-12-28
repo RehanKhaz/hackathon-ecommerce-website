@@ -11,7 +11,7 @@ const Circle = ({ bg }) => (
 )
 
 const page = () => {
-    const { cart,Subtotal } = UseCartContext()
+    const { cartItems, Subtotal } = UseCartContext()
     return (
         <div className='w-screen'>
             <WebsiteBanner title={'Checkout'} />
@@ -40,15 +40,15 @@ const page = () => {
                             <span className='text-xl md:text-3xl font-medium'>Subtotal</span>
                         </div>
 
-                        { cart.length == 0 ? <p className='text-xl tracking-wider font-medium'>Your Cart is Empty</p> : cart.map((item, index) => {
+                        {cartItems.length == 0 ? <p className='text-xl tracking-wider font-medium'>Your Cart is Empty</p> : cartItems.map((item, index) => {
                             return <div key={index} className='flex-between w-full gap-4'>
                                 <span className='font-semibold text-[1em] md:text-xl'>{item.name} <span className='text-[#9F9F9F] text-lg'> X {item.quantity}</span> </span>
-                                <span className='font-semibold text-[1em] md:text-xl'>Rs.{item.quantity * Number(item.price.replace(/,/g,''))}.000 </span>
+                                <span className='font-semibold text-[1em] md:text-xl'>Rs.{item.quantity * Number(item.price.replace(/,/g, ''))}.000 </span>
                             </div>
                         })}
                         <div className='flex-between w-full gap-6'>
-                        <span className='text-[.9em] md:text-[1.1em] font-medium text-[#9F9F9F]'> Total</span>
-                        <span className='text-[1.2em] md:text-[1.4em] font-bold text-[#B88E2F]'>Rs.{Subtotal}.000</span>
+                            <span className='text-[.9em] md:text-[1.1em] font-medium text-[#9F9F9F]'> Total</span>
+                            <span className='text-[1.2em] md:text-[1.4em] font-bold text-[#B88E2F]'>Rs.{Subtotal}.000</span>
                         </div>
                         {/* <div className='flex flex-col gap-6'>
                                 <span className='text-[.9em] md:text-[1.1em] font-medium'></span>

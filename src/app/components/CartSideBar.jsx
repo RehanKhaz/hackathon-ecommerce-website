@@ -6,7 +6,7 @@ import { UseCartContext } from '../Context/CartContext'
 import Image from 'next/image'
 
 const CartSideBar = () => {
-  const { cart, deleteCartItem,Subtotal } = UseCartContext()
+  const { cartItems, deleteCartItem,Subtotal } = UseCartContext()
 
   return (<>
     <div className='absolute top-[4rem] right-5 z-[999] w-[21em] md:w-[27em] px-[2rem] shadow-[2px_2px_30px] shadow-slate-500 py-[2rem] bg-white'>
@@ -18,7 +18,7 @@ const CartSideBar = () => {
       <hr className='w-full bg-[#9f9f9f] h-[1.6px]' />
       <br />
       <div className='flex flex-col gap-4'>
-        {cart.length === 0 ? 'Your Cart is Empty': cart.map((item, index) => {
+        {cartItems.length === 0 ? 'Your Cart is Empty': cartItems.map((item, index) => {
 
           return <div key={index}>
             <div  className='flex items-center w-full justify-between gap-6'>
@@ -33,7 +33,7 @@ const CartSideBar = () => {
                   <span className='text-sm md:text-[1.1em] text-yellow-400 tracking-normal font-light'>Rs.{item.price}</span>
                 </div>
               </div>
-              <div className='p-[.5em] rounded-full bg-slate-300'>
+              <div className='p-[.5em] rounded-full bg-slate-300 cursor-pointer'>
                 <RxCross1 onClick={()=> deleteCartItem(item)} className='size-4' />
               </div>
             </div>

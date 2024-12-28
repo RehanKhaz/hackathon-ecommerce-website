@@ -8,7 +8,7 @@ import Gurantees from '../components/Gurantees'
 import { UseCartContext } from '../Context/CartContext'
 
 const page = () => {
-  const { cart, deleteCartItem, Subtotal } = UseCartContext()
+  const { cartItems, deleteCartItem, Subtotal } = UseCartContext()
 
   function deleteFromCart(productId) {
     deleteCartItem(productId)
@@ -31,7 +31,7 @@ const page = () => {
           </ul>
           <div className='flex flex-col max-md:mt-[5em] gap-y-[4em]  w-[100%] items-center '>
 
-            {cart.length == 0 ? <p className='text-xl font-medium tracking-wider'>Your cart is Empty.</p> : cart.map((item, index) => {
+            {cartItems.length == 0 ? <p className='text-xl font-medium tracking-wider'>Your cart is Empty.</p> : cartItems.map((item, index) => {
               return <div key={index} className=' mt-[-3rem] w-full md:mt-0 flex flex-row    items-center px-2 gap-3  new:gap-5 justify-between    '>
                 <div className=' bg-[#FBEBB5] p-1 size-[3em] md:size-[5em]'>
                   <img src={item.src} className=' size-full object-cover' alt="" />
@@ -54,11 +54,11 @@ const page = () => {
           <br />
           <div className='flex-between w-full '>
             <span className='text-[1.1em] md:text-[1em]'>SubTotal</span>
-            <span className='text-[#9F9F9F] text-[1.2em] md:text-[1em]'>Rs: {cart.length == 0 ? 0 : Subtotal}</span>
+            <span className='text-[#9F9F9F] text-[1.2em] md:text-[1em]'>Rs: {cartItems.length == 0 ? 0 : Subtotal}</span>
           </div>
           <div className='flex-between w-full'>
             <span className='text-[1.1em] md:text-[.9em]'>Total</span>
-            <span className='text-[#9F9F9F] text-[1.2em] md:text-[1em]'>Rs: {cart.length == 0 ? 0 : Subtotal}</span>
+            <span className='text-[#9F9F9F] text-[1.2em] md:text-[1em]'>Rs: {cartItems.length == 0 ? 0 : Subtotal}</span>
           </div>
           <br />
           <Link href='/CheckOut'>

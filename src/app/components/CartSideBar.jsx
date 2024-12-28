@@ -1,9 +1,9 @@
 import React from 'react'
-import { FaCross } from 'react-icons/fa'
 import Link from 'next/link'
 import { RxCross1 } from 'react-icons/rx'
 import Button from './Button'
 import { UseCartContext } from '../Context/CartContext'
+import Image from 'next/image'
 
 const CartSideBar = () => {
   const { cart, deleteCartItem,Subtotal } = UseCartContext()
@@ -12,7 +12,7 @@ const CartSideBar = () => {
     <div className='absolute top-[4rem] right-5 z-[999] w-[21em] md:w-[27em] px-[2rem] shadow-[2px_2px_30px] shadow-slate-500 py-[2rem] bg-white'>
       <div className='flex-between'>
         <h1 className='md:text-[1.3em] text-[1em] tracking-wider font-[600] sm:text-[1.1em]'>Shopping Cart</h1>
-        <img src="/images/Lock.png" className='fill-[#9F9F9F] object-cover' alt="" />
+        <img  src="/images/Lock.png" className='fill-[#9F9F9F] object-cover' alt="" />
       </div>
       <br />
       <hr className='w-full bg-[#9f9f9f] h-[1.6px]' />

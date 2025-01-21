@@ -11,8 +11,7 @@ import { UseCartContext } from '../Context/CartContext';
 
 const Header = () => {
     const [sideBarDisplay, setSideBarDisplay] = useState(false)
-    const [cartBarOpen, setCartBarOpen] = useState(false)
-    let {cartItems} = UseCartContext()
+    let {cartItems , cartBarOpen , setCartBarOpen} = UseCartContext()
     const navElements = ['Home', 'Shop', 'Blog', 'Contact', 'Cart']
     return (
         <header className='px-6 w-dvw relative  flex items-center py-4 gap-4 justify-between lg:py-6 md:px-8 lg:px-16 bg-white'>

@@ -29,6 +29,19 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+:root {
+  color-scheme: light; /* Disables dark mode adjustments */
+}
+
+html, body {
+  background-color: white !important; /* Hard-reset background */
+  color: #333 !important; /* Hard-reset text color */
+}
+
+Image , img {
+  filter: none !important; 
+}
+
 .flex-center {
   @apply flex items-center justify-center
 }
